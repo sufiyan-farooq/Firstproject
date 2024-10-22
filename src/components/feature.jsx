@@ -1,15 +1,22 @@
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 export default function Feature(){
+  useEffect(() => {
+    AOS.init();
+    AOS.refresh();
+  }, []);
     return(
         <section className="text-gray-600 body-font">
   <div className="container px-5 py-24 mx-auto flex flex-wrap">
-    <div className="lg:w-1/2 w-full mb-10 lg:mb-0 rounded-lg overflow-hidden">
+    <div className="lg:w-1/2 w-full mb-10 lg:mb-0 rounded-lg overflow-hidden" data-aos="zoom-in" data-aos-delay="300" data-aos-duration="2000">
       <img
         alt="feature"
         className="object-cover object-center h-full w-full"
         src="https://img.freepik.com/free-photo/cute-woman-bright-hat-purple-blouse-is-leaning-stand-with-dresses-posing-with-package-isolated-background_197531-17610.jpg"
       />
     </div>
-    <div className="flex flex-col flex-wrap lg:py-6 -mb-10 lg:w-1/2 lg:pl-12 lg:text-left text-center">
+    <div className="flex flex-col flex-wrap lg:py-6 -mb-10 lg:w-1/2 lg:pl-12 lg:text-left text-center"  data-aos="zoom-in" data-aos-delay="300" data-aos-duration="2000">
       <div className="flex flex-col mb-10 lg:items-start items-center">
      
         <div className="flex-grow">

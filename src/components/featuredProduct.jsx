@@ -25,7 +25,6 @@ export default function FeaturedProduct() {
   if (isloading) {
     return (
       <div className="flex justify-center mt-24">
-        {" "}
         <img src="https://loading.io/assets/mod/spinner/shopping/lg.gif" />
       </div>
     );
@@ -33,7 +32,7 @@ export default function FeaturedProduct() {
 
   return (
     <section className="w-fit mx-auto grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 justify-items-center justify-center gap-y-15 gap-x-10 mt-10 mb-10 mt-24">
-      {products.slice(0,4).map((val, index) => {
+      {products.slice(0, 4).map((val, index) => {
         return (
           <Product
             key={index}

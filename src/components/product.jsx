@@ -1,5 +1,7 @@
 import { NavLink } from "react-router-dom";
-
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 export default function Product({ image, title, categories, price, id ,description }) {
   const data = {
     title  : title,
@@ -9,10 +11,14 @@ export default function Product({ image, title, categories, price, id ,descripti
     id:id,
     description: description
   }
+  useEffect(() => {
+    AOS.init();
+    AOS.refresh();
+  }, []);
   return (
     <>
       <NavLink to={`/products/${id}`} state={{item:data}}>
-        <div className="w-72 h-96 bg-white  rounded-xl duration-500 hover:scale-105 hover:shadow-xl mb-10">
+        <div className="w-72 h-96 bg-white  rounded-xl duration-500 hover:scale-105 hover:shadow-xl mb-10" data-aos="flip-right" data-aos-delay="300" data-aos-duration="2000">
           <a href="#">
             <img
               src={image}

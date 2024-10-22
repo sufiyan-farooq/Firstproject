@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useEffect} from "react";
 import { useLocation } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -14,16 +14,26 @@ export default function ProductViewCard() {
     category: loc?.state?.item?.category || '',
     reviews: loc?.state?.item?.reviews || 0,
   };
-
-  const [cartItems, setCartItems] = useState([])  
+  
+  const [cartItems, setCartItems] = useState(() => {
+    const savedCart = localStorage.getItem('cartItem');
+    return savedCart ? JSON.parse(savedCart) : [];
+  });
+  
   const handleAddToCart = () => {
-    setCartItems([...cartItems,product])
-    toast.success("Item added to cart!")
-    console.log(product,"product");
-    localStorage.setItem('cartItem',JSON.stringify(cartItems))
+    setCartItems((prevItems) => {
+      const updatedCart = [...prevItems, product];
+      return updatedCart;
+    });
+    toast.success("Item added to cart!");
   };
-
+  
+  useEffect(() => {
+    localStorage.setItem('cartItem', JSON.stringify(cartItems));
+  }, [cartItems]);
+  
   console.log(cartItems);
+  
 
   return (
     <section className="text-gray-600 body-font overflow-hidden">

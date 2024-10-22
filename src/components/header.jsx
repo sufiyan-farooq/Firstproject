@@ -1,20 +1,15 @@
 import { NavLink } from "react-router-dom";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import "./header.css";
-import Home from "../pages/home";
 import React, { useEffect, useState } from "react";
-import { Badge, Button, Drawer } from "antd";
+import { Badge, Drawer } from "antd";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const [cartLen, setCartLen] = useState([]);
+  const [ totalData, SetTotalData] = useState('0.00')
 
-  const [count, setCount] = useState(1);
 
-  const decrement = () => {
-    if (count > 0) {
-      setCount(count - 1);
-    }
-  };
 
   const showDrawer = () => {
     setOpen(true);
@@ -23,19 +18,24 @@ export default function Header() {
     setOpen(false);
   };
 
-  const [cartLen, setCartLen] = useState([]);
+
   useEffect(() => {
-    const cart = JSON.parse(localStorage.getItem("cartItem"));
-    setCartLen(cart);
-  });
+      const cart = JSON.parse(localStorage.getItem("cartItem")) || [];
+      setCartLen(cart);
+  }, []);
 
-  console.log(cartLen, "cartLen");
-
-  const totalPrice = cartLen.reduce((total, item) => total + item.price, 0);
+  useEffect(() => {
+      const totalPrice = cartLen.length > 0 
+          ? cartLen.reduce((total, item) => total + item.price, 0).toFixed(2) 
+          : 0;
+      localStorage.setItem("totalPrice", totalPrice);
+      SetTotalData(totalPrice);
+  }, [cartLen]);
 
   return (
     <nav className="nav flex flex-wrap items-center justify-between px-8 p-4">
-      <div className="flex flex-no-shrink items-center mr-6 py-3 text-grey-darkest">
+<NavLink to={'/home'}>
+<div className="flex flex-no-shrink items-center mr-6 py-3 text-grey-darkest">
         <svg
           className="fill-current h-8 mr-2 w-8"
           xmlns="http://www.w3.org/2000/svg"
@@ -56,6 +56,7 @@ export default function Header() {
           Luke Bennett
         </span>
       </div>
+</NavLink>
       <input className="menu-btn hidden" type="checkbox" id="menu-btn" />
       <label
         className="menu-icon block cursor-pointer md:hidden px-2 py-4 relative select-none"
@@ -67,7 +68,7 @@ export default function Header() {
         <li className="border-t md:border-none">
           <a
             href="/about/"
-            className="block md:inline-block px-4 py-3 no-underline text-grey-darkest hover:text-grey-darker"
+            className="block md:inline-block px-6 py-4 no-underline  text-xl text-grey-darkest hover:text-grey-darker"
           >
             <NavLink to={"/home"}>Home</NavLink>
           </a>
@@ -75,7 +76,7 @@ export default function Header() {
         <li className="border-t md:border-none">
           <a
             href="/about/"
-            className="block md:inline-block px-4 py-3 no-underline text-grey-darkest hover:text-grey-darker"
+            className="block md:inline-block px-6 py-4 no-underline text-xl text-grey-darkest hover:text-grey-darker"
           >
             <NavLink to={"/about"}>About</NavLink>
           </a>
@@ -83,17 +84,17 @@ export default function Header() {
         <li className="border-t md:border-none">
           <a
             href="/about/"
-            className="block md:inline-block px-4 py-3 no-underline text-grey-darkest hover:text-grey-darker"
+            className="block md:inline-block px-6 py-4 no-underline text-xl text-grey-darkest hover:text-grey-darker"
           >
             <NavLink to={"/product"}>Product</NavLink>
           </a>
         </li>
 
-        <li className="border-t md:border-none">
-          <Badge count={cartLen?.length}>
+        <li className="border-t md:border-none ">
+          <Badge count={cartLen?.length} style={{marginTop:'12px'}}>
             <AiOutlineShoppingCart
               size={25}
-              className="mt-3"
+              className="mt-4"
               style={{ cursor: "pointer" }}
               onClick={showDrawer}
             />
@@ -105,9 +106,9 @@ export default function Header() {
                 <>
                   <div className="flex items-center justify-between bg-gray-100 p-2 rounded-lg mb-4">
                     <img
-                      src="https://img.freepik.com/free-photo/organic-cosmetic-product-with-dreamy-aesthetic-fresh-background_23-2151382816.jpg?semt=ais_hybrid"
+                      src={item?.image}
                       alt="Product"
-                      className="w-16 h-16 object-cover rounded"
+                      className="w-16 h-16 object-contain rounded"
                     />
                     <div className="flex-1 mx-4">
                       <h3 className="text-lg font-medium">{item?.title}</h3>
@@ -117,13 +118,20 @@ export default function Header() {
                 </>
               ))}
 
-              <h6 className="text-xl">Total Amount : ${totalPrice}</h6>
+              <h6 className="text-xl font-semibold">Total Amount :${totalData} </h6>
 
               <NavLink to={"/product"}>
                 <button className="bg-blue-500 text-white px-4 py-2 rounded mt-4">
                   Continue Shopping
                 </button>
               </NavLink>
+
+             <NavLink to={'/checkout'}>
+             <button className="bg-blue-500 text-white px-4 py-2 rounded mt-4">
+                  CheckOut
+                </button>
+             </NavLink>
+
             </div>
           </Drawer>
         </li>

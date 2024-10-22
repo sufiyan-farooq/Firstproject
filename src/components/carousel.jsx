@@ -15,17 +15,17 @@ const App = () => {
     <Carousel style={{height:'100vh'}} afterChange={onChange}>
       <div>
         <h3 >
-        <img src={banner1} alt=""  style={{height:'100vh' , width:'100%'}} />
+        <img src="https://i.postimg.cc/t403yfn9/home2.jpg" alt=""  style={{height:'100vh' , width:'100%'}} />
+        </h3>
+      </div>
+      <div>
+        <h3 >
+          <img src={banner1} alt=""  style={{height:'100vh' , width:'100%',backgroundSize:'contain'}} />
         </h3>
       </div>
       <div>
         <h3 >
           <img src={banner2} alt=""  style={{height:'100vh' , width:'100%'}} />
-        </h3>
-      </div>
-      <div>
-        <h3 >
-          <img src={banner3} alt=""  style={{height:'100vh' , width:'100%'}} />
         </h3>
       </div>
       

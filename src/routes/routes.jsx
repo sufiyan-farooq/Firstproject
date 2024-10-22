@@ -7,6 +7,7 @@ import About from "../pages/about";
 import Layout from "./layout";
 import ShowProduct from "../pages/product";
 import ProductView from "../components/productViewCard";
+import CheckOut from "../pages/checkout";
 
 
 const router = createBrowserRouter([
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
         {
           path: '/products/:id',
           element: <ProductView />,
+        },
+        {
+          path: '/checkout',
+          element: <CheckOut/>,
         },
   
         

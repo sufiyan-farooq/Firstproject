@@ -1,8 +1,15 @@
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 export default function Gallery(){
+  useEffect(() => {
+    AOS.init();
+    AOS.refresh();
+  }, []);
     return(
 
-        <section className="text-gray-600 body-font">
-  <div className="container px-5 py-24 mx-auto flex flex-wrap">
+        <section className="text-gray-600 body-font">d
+  <div className="container px-5 py-24 mx-auto flex flex-wrap"  data-aos="zoom-in" data-aos-delay="300" data-aos-duration="2000">
  
     <div className="flex flex-wrap md:-m-2 -m-1">
       <div className="flex flex-wrap w-1/2">
