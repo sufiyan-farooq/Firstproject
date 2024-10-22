@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Product from "../components/product";
+import { Input } from "antd";
 
 export default function ShowProduct() {
   const [products, setProducts] = useState([]);
@@ -32,6 +33,7 @@ export default function ShowProduct() {
   }
 
   return (
+
     <section className="w-fit mx-auto grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 justify-items-center justify-center gap-y-15 gap-x-10 mt-10 mb-10">
       {products.map((val, index) => {
         return (

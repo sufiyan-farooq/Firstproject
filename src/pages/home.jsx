@@ -4,6 +4,7 @@ import Feature from "../components/feature";
 import FeaturedProduct from "../components/featuredProduct";
 import Gallery from "../components/gallery";
 import Contact from "../components/contact";
+import ImageContent from "../components/imageContent";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -51,6 +52,7 @@ export default function Home() {
   return (
     <>
       <Carousel />
+      <ImageContent/>
       <Gallery />
       <Feature />
       <div>

@@ -16,6 +16,7 @@ export default function Product({ image, title, categories, price, id ,descripti
     AOS.refresh();
   }, []);
   return (
+
     <>
       <NavLink to={`/products/${id}`} state={{item:data}}>
         <div className="w-72 h-96 bg-white  rounded-xl duration-500 hover:scale-105 hover:shadow-xl mb-10" data-aos="flip-right" data-aos-delay="300" data-aos-duration="2000">

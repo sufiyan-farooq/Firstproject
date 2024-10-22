@@ -8,7 +8,7 @@ export default function Gallery(){
   }, []);
     return(
 
-        <section className="text-gray-600 body-font">d
+        <section className="text-gray-600 body-font">
   <div className="container px-5 py-24 mx-auto flex flex-wrap"  data-aos="zoom-in" data-aos-delay="300" data-aos-duration="2000">
  
     <div className="flex flex-wrap md:-m-2 -m-1">
