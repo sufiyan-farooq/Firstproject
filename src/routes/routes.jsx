@@ -8,6 +8,7 @@ import Layout from "./layout";
 import ShowProduct from "../pages/product";
 import ProductView from "../components/productViewCard";
 import CheckOut from "../pages/checkout";
+import Admin from "../pages/admin";
 
 
 const router = createBrowserRouter([
@@ -42,13 +43,33 @@ const router = createBrowserRouter([
           path: '/checkout',
           element: <CheckOut/>,
         },
+     
+  
   
         
     
       ]
     },  
     
+
+    {
+      path: '/' ,
+      children: [
+     
+         {
+            path: '/admin',
+            element: <Admin />,
+          },
+    
+     
+  
+  
+        
+    
+      ]
+    },  
   
   ])
+  
 
   export default router;

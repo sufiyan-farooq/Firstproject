@@ -7,7 +7,7 @@ export default function CheckOut() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [address, setAddress] = useState('');
-  const [card, setCard] = useState('');
+  const [num, setnum] = useState('');
 
   useEffect(() => {
     const storedAmount = JSON.parse(localStorage.getItem("totalPrice"));
@@ -32,21 +32,22 @@ export default function CheckOut() {
       toast.error('Address is required');
       return; 
     }
-    if (!card) {
-      toast.error('Card Information is required');
+    if (!num) {
+      toast.error('Phone Information is required');
       return; 
     }
 
     console.log("Name:", name);
     console.log("Email:", email);
     console.log("Address:", address);
-    console.log("Card Info:", card);
+    console.log("Phone Info:", num);
 toast.success('Thank For Your Order')
     setName('');
     setEmail('');
     setAddress('');
-    setCard('');
+    setnum('');
     setAmount("")
+
   };
 
   return (
@@ -72,6 +73,7 @@ toast.success('Thank For Your Order')
           <label className="block text-sm font-medium mb-1">Email</label>
           <Input 
             type="email" 
+            required
             placeholder="Enter your email" 
             className="w-full"
             value={email}
@@ -90,12 +92,14 @@ toast.success('Thank For Your Order')
         </div>
 
         <div className="mb-4">
-          <label className="block text-sm font-medium mb-1">Card Information</label>
+          <label className="block text-sm font-medium mb-1">Phone </label>
           <Input 
-            placeholder="Card number" 
+            placeholder="Phone number" 
             className="w-full"
-            value={card}
-            onChange={(e) => setCard(e.target.value)}  
+            required
+           type="number"
+            value={num}
+            onChange={(e) => setnum(e.target.value)}  
           />
         </div>
 
